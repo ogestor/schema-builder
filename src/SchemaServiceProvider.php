@@ -3,6 +3,7 @@
 namespace Agontuk\Schema;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class SchemaServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,7 @@ class SchemaServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/resources', 'schema');
 
         $app = $this->app;
-        $isLumen = str_contains($app->version(), 'Lumen');
+        $isLumen = Str::contains($app->version(), 'Lumen');
         $isEnabled = env('SCHEMA_ROUTES_ENABLED', false) && 'local' == env('APP_ENV');
 
         if ($isLumen && $isEnabled) {
